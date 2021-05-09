@@ -22,22 +22,22 @@ Questions:
   INNER JOIN albums 
   ON tracks.AlbumId = albums.AlbumId;
 
-3. Find the minimum duration of the track in an album. Your solution should include track name, album id, album title and duration of the track sorted from highest to lowest.
+3. Find the minimum duration of the track in an album. Your solution should include album id, album title and duration of the track sorted from highest to lowest.
 
-  SELECT tracks.name, tracks.AlbumId, albums.Title, MIN(tracks.Milliseconds) AS min_duration
+  SELECT tracks.AlbumId, albums.Title, MIN(tracks.Milliseconds) AS min_duration
   FROM tracks
   INNER JOIN albums 
   ON tracks.AlbumId = albums.AlbumId
-  GROUP BY tracks.AlbumId
+  GROUP BY tracks.AlbumId, albums.Title
   ORDER BY min_duration DESC;
 
-4. Find the total duration of each album. Your solution should include track name, album id, album title and its total duration sorted from highest to lowest.
+4. Find the total duration of each album. Your solution should include album id, album title and its total duration sorted from highest to lowest.
 
-  SELECT tracks.name, tracks.AlbumId, albums.Title, SUM(tracks.Milliseconds) AS total_duration
+  SELECT tracks.AlbumId, albums.Title, SUM(tracks.Milliseconds) AS total_duration
   FROM tracks
   INNER JOIN albums 
   ON tracks.AlbumId = albums.AlbumId
-  GROUP BY tracks.AlbumId
+  GROUP BY tracks.AlbumId, albums.Title
   ORDER BY total_duration DESC;
 
 5. Based on the previous question, find the albums whose total duration is higher than 70 minutes. Your solution should include album title and total duration.
